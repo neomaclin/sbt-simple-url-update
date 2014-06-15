@@ -46,15 +46,8 @@ checksum files for `.js` files:
 includeFilter in simpleUrlUpdate := "*.js"
 ```
 
-Or to exclude all `.js` files but include any other files:
-
-```scala
-excludeFilter in simpleUrlUpdate := "*.js"
-```
-
-
 default is to have `.css` and `.js` files updated.
 
 ```scala
-includeFilter in simpleUrlUpdate := "*.js"
+includeFilter in simpleUrlUpdate := "*.js" || "*.css"
 ```

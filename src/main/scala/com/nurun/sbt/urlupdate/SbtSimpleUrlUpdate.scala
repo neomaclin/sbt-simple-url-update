@@ -41,13 +41,13 @@ object SbtSimpleUrlUpdate extends AutoPlugin {
     def checksummedPath(path: String): String = {
 	  
       val pathFile = sbt.file(path)
-      (reversePathMappings.get(path + "." + algorithm) match {
+      reversePathMappings.get(path + "." + algorithm) match {
         case Some(file) => (pathFile.getParentFile / (IO.read(file) + "-" + pathFile.getName)).getPath
         case None => path
-      }).replaceAll("\\\\","/")
+      }
     }
     val assetVersions = mappings.map{ 
-      case (file, path) => path.replaceAll("\\\\","/") -> checksummedPath(path)
+      case (file, path) => path.replaceAll("\\\\","/") -> checksummedPath(path).replaceAll("\\\\","/")
     }.distinct.filterNot{ 
       case (originalPath, newPath) => originalPath == newPath 
     }

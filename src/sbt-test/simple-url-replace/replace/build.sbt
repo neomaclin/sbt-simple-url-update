@@ -4,7 +4,7 @@ pipelineStages := Seq(simpleUrlUpdate)
 
 // for checking that the produced pipeline mappings are correct
 
-val expectedContents = Set("img/08e31f7ccd6c10d6133027cd5173b0ac-a.png","") map(_.replace("/", java.io.File.separator))
+val expectedContents = Set("img/08e31f7ccd6c10d6133027cd5173b0ac-a.png","")
 
 val checkUpdatedContents = taskKey[Unit]("check if the static file had the updated asset url references")
 

@@ -1,4 +1,4 @@
-package com.nurun.sbt.urlupdate
+package org.neolin.sbt.urlupdate
 
 import sbt._
 import com.typesafe.sbt.web.{PathMapping, SbtWeb}

@@ -1,6 +1,6 @@
 sbtPlugin := true
 
-organization := "com.nurun.sbt"
+organization := "org.neolin.sbt"
 
 name := "sbt-simple-url-update"
 

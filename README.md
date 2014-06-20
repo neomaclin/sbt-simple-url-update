@@ -10,7 +10,7 @@ Add plugin
 Add the plugin to `project/plugins.sbt`. For example:
 
 ```scala
-resolvers += "Bintray repository" at "http://dl.bintray.com/neomaclin/maven/"
+resolvers += "Bintray repository" at "http://dl.bintray.com/neomaclin/sbt-plugins/"
 
 addSbtPlugin("org.neolin.sbt" % "sbt-simple-url-update" % "1.0.0")
 ```

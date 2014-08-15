@@ -53,3 +53,8 @@ default is to have `.css` and `.js` files updated.
 ```scala
 includeFilter in simpleUrlUpdate := "*.js" || "*.css"
 ```
+
+
+Copyright (c) 2014 ICRL
+
+See the file license.txt for copying permission.

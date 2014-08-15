@@ -1,3 +1,7 @@
+//Copyright (c) 2014 ICRL
+//
+//See the file license.txt for copying permission.
+
 package org.neolin.sbt.urlupdate
 
 import sbt._

@@ -20,7 +20,7 @@ bintrayOrganization in bintray := None
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.0.0")
 
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 publishMavenStyle := false 
 

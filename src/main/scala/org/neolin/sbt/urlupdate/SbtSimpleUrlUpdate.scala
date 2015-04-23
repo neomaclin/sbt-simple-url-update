@@ -39,7 +39,7 @@ object SbtSimpleUrlUpdate extends AutoPlugin {
     simpleUrlUpdate := simpleURLUpdateFiles.value
   )
 
-  private def updatePipeline(mappings: Seq[PathMapping], algorithm: String, targetDir: File): String => String = {
+  private def updatePipeline(mappings: Seq[PathMapping], algorithm: String): String => String = {
     val reversePathMappings = mappings.map{ case (k, v) => (v, k) }.toMap
     
     def checksummedPath(path: String): String = {
@@ -69,13 +69,21 @@ object SbtSimpleUrlUpdate extends AutoPlugin {
       val include = (includeFilter in simpleUrlUpdate).value
       val exclude = (excludeFilter in simpleUrlUpdate).value
       
-      val updatedMappings = for {
+      SbtWeb.syncMappings(
+        streams.value.cacheDirectory,
+        mappings,
+        targetDir
+      )
+
+      val updateMappings = targetDir.***.get.toSet.filter(_.isFile).pair(relativeTo(targetDir))
+
+      for {
         algorithm <- algorithms.value
-        urlUpdate = updatePipeline(mappings, algorithm, targetDir)
-        (file, path) <- mappings if !file.isDirectory && include.accept(file) && !exclude.accept(file)
+        (file, path) <- updateMappings.filter(f => !f._1.isDirectory && include.accept(f._1) && !exclude.accept(f._1))
       } yield {
-        IO.write(file, urlUpdate(IO.read(file)))
-      } 
-      mappings  
+        IO.write(file, updatePipeline(updateMappings, algorithm)(IO.read(file)))
+      }
+
+      targetDir.***.get.toSet.filter(_.isFile).pair(relativeTo(targetDir))
   }
 }
